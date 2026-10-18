@@ -1,0 +1,73 @@
+:root {
+    color-scheme: dark;
+    font-family: system-ui, sans-serif;
+    background: #111813;
+    color: #e8eee9;
+}
+body { margin: 0; }
+header, main { max-width: 1500px; margin: auto; padding: 1rem 1.5rem; }
+header { border-bottom: 1px solid #34453a; }
+.header-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.authenticated-user { display: flex; align-items: center; gap: .75rem; }
+.public-ip { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1rem; }
+.public-ip p { margin: 0; }
+h1, h2, h3 { color: #b7e4bd; }
+section { margin: 2rem 0; }
+.cards { display: flex; flex-wrap: wrap; gap: 1rem; }
+.card { min-width: 12rem; padding: .75rem 1rem; border: 1px solid #405448; border-radius: .5rem; background: #1b261f; }
+.card h3 { margin-top: 0; }
+.server-details { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1rem; margin-bottom: 0; }
+.server-details dd { margin: 0; }
+.json-links { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin-top: 1rem; }
+.json-dialog { width: min(70rem, 90vw); max-height: 85vh; padding: 1rem; border: 1px solid #405448; border-radius: .5rem; background: #18221c; color: #e8eee9; }
+.json-dialog::backdrop { background: rgb(0 0 0 / 70%); }
+.json-dialog .dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.json-dialog h2 { margin-top: 0; }
+.json-dialog pre { overflow: auto; max-height: 65vh; padding: 1rem; background: #0c120e; border-radius: .35rem; }
+.json-key { color: #9cdcfe; }
+.json-string { color: #ce9178; }
+.json-number { color: #b5cea8; }
+.json-literal { color: #569cd6; }
+.yaml-key { color: #9cdcfe; }
+.yaml-string { color: #ce9178; }
+.yaml-number { color: #b5cea8; }
+.yaml-literal { color: #569cd6; }
+.yaml-comment { color: #6a9955; }
+.xuid-form { display: flex; align-items: end; flex-wrap: wrap; gap: 1rem; }
+.xuid-form label { display: grid; gap: .35rem; }
+.xuid-form input { padding: .35rem; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; background: #18221c; }
+th, td { padding: .65rem; border: 1px solid #34453a; text-align: left; vertical-align: top; }
+thead th { position: sticky; top: 0; background: #233128; }
+.player-form { display: grid; gap: .5rem; min-width: 10rem; }
+input, select, button { font: inherit; }
+select, button { padding: .35rem; }
+button { cursor: pointer; background: #347a46; color: white; border: 0; border-radius: .25rem; }
+.login-page { display: grid; place-items: center; min-height: 100vh; box-sizing: border-box; }
+.login-card { width: min(24rem, 100%); margin: 0; padding: 1.5rem; border: 1px solid #405448; border-radius: .5rem; background: #1b261f; box-sizing: border-box; }
+.login-card h1 { margin-top: 0; }
+.login-form { display: grid; gap: 1rem; }
+.login-form label { display: grid; gap: .35rem; }
+.login-form input { padding: .5rem; }
+.mono { font-family: ui-monospace, monospace; }
+.notice { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 1rem; border-radius: .35rem; }
+.notice-close { padding: 0; background: transparent; color: inherit; font-size: 1.5rem; line-height: 1; }
+.success { background: #174d28; }
+.error { background: #692929; }
+.warning { background: #66551e; }
+.heading-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.table-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.table-filter { display: flex; align-items: center; gap: .5rem; }
+.table-filter input { padding: .35rem; }
+.sort-button { padding: 0; border: 0; border-radius: 0; background: transparent; color: inherit; font-weight: bold; text-align: left; }
+th[aria-sort="ascending"] .sort-button::after { content: " \25b2"; }
+th[aria-sort="descending"] .sort-button::after { content: " \25bc"; }
+a { color: #8fd49d; }
+.properties .different { background: #322d19; }
+@media (max-width: 700px) {
+    header, main { padding: .75rem; }
+    .header-heading { align-items: flex-start; flex-direction: column; }
+    th, td { padding: .45rem; }
+    .heading-row { align-items: flex-start; flex-direction: column; }
+}

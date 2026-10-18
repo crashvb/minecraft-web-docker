@@ -1,0 +1,11 @@
+[www]
+user = minecraft
+group = minecraft
+listen.owner = www-data
+listen.group = www-data
+env[MINECRAFT_BACKUP] = $MINECRAFT_BACKUP
+env[MINECRAFT_CONFIG] = $MINECRAFT_CONFIG
+env[MINECRAFT_DATA] = $MINECRAFT_DATA
+env[MINECRAFT_LOCKS] = $MINECRAFT_LOCKS
+env[MINECRAFT_SHARE] = $MINECRAFT_SHARE
+env[MINECRAFT_STUN] = $MINECRAFT_STUN

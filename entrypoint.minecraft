@@ -1,0 +1,39 @@
+#!/bin/bash
+
+set -e -o pipefail
+
+# Configure: minecraft
+if [[ ! -e "${EP_RUN}" ]] ; then
+	log "Configuring $(basename "${0}") for first run ..."
+
+	render_template "${MINECRAFT_WEB_SHARE}/minecraft.php-fpm.conf" "/etc/php/8.1/fpm/pool.d/zz-minecraft.conf"
+	install --directory --group=minecraft --mode=0700 --owner=minecraft "${MINECRAFT_LOCKS}"
+	chgrp minecraft "${MINECRAFT_CONFIG}/xuid.yml"
+	chmod 0660 "${MINECRAFT_CONFIG}/xuid.yml"
+	chgrp minecraft "${MINECRAFT_BACKUP}"
+	chmod 0770 "${MINECRAFT_BACKUP}"
+	for path in "${MINECRAFT_SHARE}"/* ; do
+		[[ -d "${path}" ]] || continue
+		server="${path##*/}"
+		backup="${MINECRAFT_BACKUP}/${server}"
+		if [[ ! -d "${backup}" ]] ; then
+			log "ERROR: Missing minecraft backup volume: ${backup}"
+			exit 1
+		fi
+		chgrp minecraft "${backup}"
+		chmod 0770 "${backup}"
+	done
+
+	# .htpasswd ...
+	log "Generating: .htpasswd ..."
+	install --group=minecraft --mode=0640 --owner=root /dev/null "${MINECRAFT_CONFIG}/.htpasswd"
+	for i in $(echo "${MINECRAFT_USERS}" | sed --expression="s/,/ /g"); do
+		user="${i,,}"
+		log "	${user}"
+		generate_password "minecraft_${user}"
+		var="MINECRAFT_${user^^}_PASSWORD"
+		hash="$(printf '%s' "${!var}" | php -r 'echo password_hash(stream_get_contents(STDIN), PASSWORD_BCRYPT);')"
+		printf '%s:%s\n' "${user}" "${hash}" >> "${MINECRAFT_CONFIG}/.htpasswd"
+	done
+fi
+
